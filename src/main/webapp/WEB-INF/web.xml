@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>SessionInitialisation</servlet-name>
+        <servlet-class>SessionInitialisationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionInitialisation</servlet-name>
+        <url-pattern>/sessionInitialisation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Authorization</servlet-name>
+        <servlet-class>AuthorizationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Authorization</servlet-name>
+        <url-pattern>/authorization</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Registration</servlet-name>
+        <servlet-class>RegistrationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logInPage</servlet-name>
+        <jsp-file>/LogInPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logInPage</servlet-name>
+        <url-pattern>/logInPage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>signInPage</servlet-name>
+        <jsp-file>/SignInPage.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signInPage</servlet-name>
+        <url-pattern>/signInPage</url-pattern>
+    </servlet-mapping>
+
+</web-app>
