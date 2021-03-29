@@ -1,5 +1,5 @@
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,21 +13,31 @@ public class AuthorizationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String personalData = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         String login = personalData.substring(0, personalData.indexOf(":"));
-        String password = personalData.substring(personalData.indexOf(":") + 1);
+        //String password = personalData.substring(personalData.indexOf(":") + 1);
+
+        System.out.println(login);
+
         if (DBReadWriter.isRegistered(personalData)) {
-            System.out.println(login);
-            request.getSession().setAttribute("login", login);
-            System.out.println(password);
-            request.getSession().setAttribute("password", password);
-            response.sendRedirect(request.getContextPath() + "/UserGUI.jsp");
-        }else{
-            response.sendRedirect(request.getContextPath() + "/signInPage");
+            Cookie[] cookies = request.getCookies();
+            System.out.println("KEKW");
+            for (Cookie c : cookies) {
+                if (c.getName().equals("login")) {
+                    c.setValue(login);
+                } else if (c.getName().equals("isLogged")) {
+                    c.setValue("true");
+                    break;
+                }
+            }
+            response.setContentType("text/html");
+            PrintWriter writer = response.getWriter();
+            writer.println("true");
+            writer.close();
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.sendRedirect(request.getContextPath() + "/logInPage");
+        //response.sendRedirect(request.getContextPath() + "/logInPage");
 
         /*RequestDispatcher dispatcher = req.getRequestDispatcher("/UserGUI.jsp");
         dispatcher.forward(req, resp);*/

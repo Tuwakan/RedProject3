@@ -6,21 +6,9 @@ function onButtonLogInClick() {
     let xhr = new XMLHttpRequest();
     let body = login + ':' + password;
 
-    xhr.onreadystatechange = function() {
-        if(this.readyState === this.HEADERS_RECEIVED) {
-            console.log(xhr.getResponseHeader("Location"));
-        }
-        if (xhr.readyState === 4) {
-            console.log(xhr.response);
-            console.log(xhr.status);
-            console.log(this.HEADERS_RECEIVED);
-        }
-    }
-
     xhr.open("POST", 'http://localhost:8080/authorization', true);
     xhr.send(body);
 }
-
 
 fetch('http://localhost:8080/authorization')
     .then(response => {
@@ -34,15 +22,14 @@ fetch('http://localhost:8080/authorization')
                 let my_div = document.getElementById("org_div1");
                 document.body.insertBefore(newDiv, my_div);
             }
-            else {
-                redirect('http://localhost:8080/logInPage');
+            else if (x === 'true') {
+                //window.location.href = 'http://localhost:8080/signInPage'
+                console.log("fff");
+                $(document).ready(function(){
+                    location.replace("http://localhost:8080/signInPage");
+                });
             }
+            // infinity
         }
         f1();
     })
-
-function redirect(url) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.send();
-}
