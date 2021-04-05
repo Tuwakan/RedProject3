@@ -32,21 +32,20 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>logInPage</servlet-name>
-        <jsp-file>/LogInPage.jsp</jsp-file>
+        <servlet-name>DeleteCookies</servlet-name>
+        <servlet-class>DeleteCookiesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>logInPage</servlet-name>
-        <url-pattern>/logInPage</url-pattern>
+        <servlet-name>DeleteCookies</servlet-name>
+        <url-pattern>/deleteCookies</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>signInPage</servlet-name>
-        <jsp-file>/SignInPage.jsp</jsp-file>
+        <servlet-name>WriterMessages</servlet-name>
+        <servlet-class>WriterMessagesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>signInPage</servlet-name>
-        <url-pattern>/signInPage</url-pattern>
+        <servlet-name>WriterMessages</servlet-name>
+        <url-pattern>/writerMessages</url-pattern>
     </servlet-mapping>
-
 </web-app>

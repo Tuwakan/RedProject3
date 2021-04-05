@@ -1,6 +1,6 @@
 import java.io.*;
 
-class DBReadWriter {
+public class DBReadWriter {
 
     static String pathToDB = "C:\\Users\\Tuwakan\\IdeaProjects\\RedProject\\src\\main\\resources\\db.txt";
     static File file = new File(pathToDB);

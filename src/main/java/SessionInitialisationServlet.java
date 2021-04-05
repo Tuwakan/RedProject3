@@ -12,22 +12,37 @@ public class SessionInitialisationServlet extends HttpServlet {
 
         Cookie[] cookies = request.getCookies();
         String cookieName = "isLogged";
-        if(cookies != null) {
-            for(Cookie c: cookies) {
-                if(cookieName.equals(c.getName())) {
+        if (cookies != null && cookiesLogInAndIsLoggedArePresent(cookies)) {
+            for (Cookie c : cookies) {
+                if (cookieName.equals(c.getName())) {
                     if (c.getValue().equals("true")) {
-                        response.sendRedirect("http://localhost:8080/UserGUI.jsp");
+                        response.sendRedirect("http://localhost:8080/UserGUI.html");
                         hasRedirect = true;
                         break;
                     }
                 }
             }
-            if (!hasRedirect)
+            if (!hasRedirect) {
+                addCookies(response);
                 response.sendRedirect("http://localhost:8080/LogInPage.html");
+            }
+        } else {
+            addCookies(response);
+            response.sendRedirect("http://localhost:8080/LogInPage.html");
         }
-        else {
-            response.addCookie(new Cookie("login", null));
-            response.addCookie(new Cookie("isLogged", null));
+    }
+
+    private boolean cookiesLogInAndIsLoggedArePresent(Cookie[] cookies) {
+        for (Cookie c : cookies) {
+            if ("login".equals(c.getName()) || "isLogged".equals(c.getName())) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    private void addCookies(HttpServletResponse response) {
+        response.addCookie(new Cookie("login", null));
+        response.addCookie(new Cookie("isLogged", "false"));
     }
 }
