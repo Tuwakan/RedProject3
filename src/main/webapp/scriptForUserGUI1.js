@@ -3,7 +3,7 @@ $(document).ready(function(){
         let xhr = new XMLHttpRequest();
         xhr.open("GET", 'http://localhost:8080/deleteCookies', true);
         xhr.send();
-        doFetch();
+        fetchIsUserLogOut();
     });
 });
 
@@ -22,25 +22,31 @@ $(document).ready(function() {
     });
 });
 
-function doFetch() {
+function fetchIsUserLogOut() {
     fetch('http://localhost:8080/deleteCookies')
         .then(response => {
             async function f1() {
                 let x = await response.text();
-                console.log(x);
                 if (x === 'true') {
                     window.location.replace("http://localhost:8080/sessionInitialisation");
                 }
             }
-
             f1();
         })
 }
 
-while (true) {
-    setTimeout(myFunction, 3000)
+function fetchMessageAndWriteInChat() {
+    fetch('http://localhost:8080/writerMessages')
+        .then(response => {
+            async function f1() {
+                let x = await response.text();
+                console.log();
+                if (x !== "null") {
+                    document.getElementById("chat").value = x;
+                }
+            }
+            f1();
+        })
 }
 
-function myFunction() {
-    alert('Hello');
-}
+setInterval(fetchMessageAndWriteInChat, 500);

@@ -5,13 +5,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scriptForUserGUI1.js"></script>
 </head>
+
+<style>
+    textarea {
+        width: 90%;
+        height: 200px;
+        resize: none;
+    }
+</style>
+
 <body>
 <p>Log In completed!</p>
 <button>Log out</button>
 
-<p>
-<iframe src="chat.txt" width="585" height="374"></iframe>
-</p>
+<label>
+    <textarea id="chat" rows="10" cols="30" name="text"></textarea>
+</label>
 
 <hr>
 Chat:
